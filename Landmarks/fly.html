@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Shanghai Landmarks</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+#map {
+position: fixed;
+width: 70%;
+}
+#features {
+width: 30%;
+margin-left: 70%;
+font-family: sans-serif;
+overflow-y: scroll;
+background-color: #D3D3D3;
+}
+section {
+padding: 25px 50px;
+line-height: 25px;
+border-bottom: 1px solid #ddd;
+opacity: 0.25;
+font-size: 13px;
+}
+section.active {
+opacity: 1;
+}
+section:last-child {
+border-bottom: none;
+margin-bottom: 200px;
+}
+
+    .mapboxgl-popup{
+        max-width:400px;
+        font:12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+    .marker{
+        background-image: url(icon.png);
+        background-size: cover;
+        width: 20px;
+        height:20px;
+        border-radius: 60%;
+        cursor: pointer;
+    }
+</style>
+ 
+<div id="map"></div>
+<div id="features">
+<section id="start" class="active">
+<h3>Landmarks in Shanghai</h3>
+<p>
+In this part, it would introduce some of the skyscrapers and significant landmarks in Shanghai. It has marked the height of the building (This includes the spire and some building ties, but does not include the antenna mast height).The building height has been filled with different color of [0,278,484 meters].
+Scroll down to read more. Hover over the markers to see detials.
+</p>
+</section>
+<section id="park hotel">
+<h3>PARK HOTEL (83.8 meters)</h3>
+<p>
+The Park Hotel on Nanjing West Road was the tallest building in the Far East long time ago. In 1934, it was announced as a national key cultural relics protection unit in 2006. In November 1950, the Shanghai Municipal Lands Bureau carried out a survey of the whole city. The survey took the flagpole at the center of the roof of the internation hotel as the origin, thus estabilishing the Shanghai city plane coordinate system.
+</p>
+</section>
+<section id="HSBC">
+<h3>HSBC Bank Building (7 floors)</h3>
+<p>
+The HSBC Bank Building on the Bund was called the most exquisite building at that time. It was the mmost occupied building on the Bund, with the widest facade, and the most spectacular buidling, built in 1923.
+</p>
+</section>
+<section id="Broadway Mansions">
+<h3>Broadway Mansions (78m)</h3>
+<p>
+It is a historical building loacted at No.20North Suzhou Road, Hongkou District. It is one of the landmark building in Shanghai. It has been one of the best viewing platforms in Shanghai since its completion. The style is Art Deco and takes the form of a modern skyscraper.
+</p>
+</section>
+<section id="Cathedral">
+<h3> St. Ignatius Cathedral (Avg 60 meters)</h3>
+<p>
+The St. Ignatius Cathedral in Xujiahui District was built in 1896. It was severely damaged during the post-Cultural Revolution. It was restored in 1979 and its religious functions were restored, with an average height of 60 meters. 
+</p>
+</section>
+<section id="exhibition">
+<h3>Shanghai Exihibition Center (104 meters)</h3>
+<p>
+The Shanghai Exihibition Center, once working as the Sino-Soviet Friendship Building, is a spectacular Russian classicism building. The focus of the building is the 104-meter-high central tower, designed to mimic the main building of the Moscow All-Union Agricultural Exhibition Hall and the Saint Peterburg Admiralty Building.
+</p>
+</section>
+<section id="Oriental Tower">
+<h3>The Oriental Pearl TV Tower (468 meters)</h3>
+<p>
+It is a futuristic building located in Lujiazui, Pudpng, across the Huangpu River from the bund.It is one of the most famous building and architecture in China, even in World which is built in 1994. This architecture could present the rapid economic and social development in China. Since its inception, it has became an integral part of the Shanghai Skyline.
+</p>
+</section>
+    <section id="Jinmao">
+<h3>Jin Mao Tower (421 meters)</h3>
+<p>
+This building is also a landmark of Shanghai built in 1999. It is a combination of the modern office building, five-star hotel, convention center, entertainment, shopping mall and other facilities. It integrates traditional Chinese style and Western architectural technology. It was designed by Adrian Smith, a former design partner of SOM Design in Chicago, USA
+</p>
+</section>
+    <section id="Shimao">
+<h3>Shi Mao International Plaza (333 meters)</h3>
+<p>
+It is the fourth tallest skyscraper built in 2006 in Shanghai (as of 2018) consisting of the main tower, podium and an open plaza. Among them, the main tower is 333.3 meters high, with 60 floors. The podium has 10 floors, and the open square is nearly 2,000 square meters. At present, the 8th to 60th floors of the main tower are working as the five-star hotel-Le Royal Meridien Shanghai, with 770 rooms. The podium is a large shopping mall.
+</p>
+</section>
+    <section id="WFC">
+<h3>World Financial Center (492 meters)</h3>
+<p>
+The World Financial Center was built in 2008 and used to be the tallest building in mainland China. It was surpassed by Shanghai Tower in 2014. The 2nd - 3rd floor is used for shopping mall, the 3rd to 5th for conference facilities, and the 7th to 77th are for offices. The 100th floor is a sightseeing and viewing facility, with a total of three observation platforms, which was certified by Guinness World Records 'World's Highest Tourism Hall'.
+</p>
+</section>
+    <section id='Expo'>
+<h3>China's Pavillion (70 meters)</h3>
+        <p>The China Pavillion at Expo 2010 in Pudong, Shanghai, colliquially known as the Oriental Crown, was the largest national pavillion at the Shanghai Expo and the largest display in the history of the World Expo. It was also the most expensive pavillion at the Shanghai Expo costing an estimated US$220 million (Wikipedia).</p>
+    </section>
+    <section id="Shanghai Tower">
+<h3>Shanghai Tower (632 meters)</h3>
+<p>
+Shanghai Tower is a comprehensive property development plan for Shanghai built in 2015. It belongs to a super high-rise landmark skyscraper which is higher than the nearby Shanghai WFC. It is currently the world's second tallest skyscraper and the world's highest green builing, just prior to Dubai. On Yincheng Middle Road, it is a very distinctive and one of SHanghai's iconic buildings.
+</p>
+</section>
+    <section id="Sinar Mas">
+<h3>Sinar Mas Plaza (320 meters)</h3>
+<p>
+The Plaza is a skyscraper whose construction was earlier suspended, but resumed construction in 2013, and was completed on January 2017. It is located north of the Bund, the historic river-front district of Shanghai, and adjacent to the Internation Cruise Terminal.
+</p>
+</section>
+<section id="SK">
+<h3>SK Tower (275 meters)</h3>
+<p>
+Shanghai SK Tower (the original called 'Shanghai World Expo Phase II) is a skyscraper laocted at 330 Jiming Road, Pudong District, with 58 floors above the gorund and 3 floors underground. It is started in 2014 and completed in 2019. The project was invested and constructed by South Korea SK Group.
+</p>
+<small id="citation">
+
+<a href="http://www.gutenberg.org/files/2346/2346-h/2346-h.htm"
+></a
+>
+</small>
+</section>
+<section>
+    <h3></h3>
+    <p>It has introduced several iconic buildings and skyscrapers in this part.</p>
+    </section>
+</div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoibHlubm5ubm5uIiwiYSI6ImNqNDNnZnJ0ZTA3bDYycW50eGZqM2RibngifQ.xg9h-2t6zFHFUo21nH0xEA';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/lynnnnnnn/cka6s6o7y0jp01ip8wdgg9jx6',
+center: [121.4888, 31.2379],
+zoom: 15,
+bearing: 27,
+pitch: 60
+});
+
+map.on('load',function(){
+    var geojson ={
+        
+    "type": "FeatureCollection",
+        'features':[
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.4888, 31.2379]
+                },
+                'properties':{
+                    'ID':1,
+                    'Event':'start',
+                    'image':'<img src=\'images/START.jpeg\'>',
+                    'icon':'\'marker\''
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.4694174,31.237]
+                },
+                'properties':{
+                    'ID':2,
+                    'Event':'park hotel',
+                    'image':'<img src=\'images/PARKHOTEL.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+           {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.486652,31.236312]
+                },
+                'properties':{
+                    'ID':3,
+                    'Event':'HSBC',
+                    'image':'<img src=\'images/HSBC 2.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.486,31.247]
+                },
+                'properties':{
+                    'ID':4,
+                    'Event':'Broadway Mansions',
+                    'image':'<img src=\'images/broadwaymansions.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.432,31.193]
+                },
+                'properties':{
+                    'ID':5,
+                    'Event':'Cathedral',
+                    'image':'<img src=\'images/CATHEDRAL.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.448,31.226]
+                },
+                'properties':{
+                    'ID':6,
+                    'Event':'exhibition',
+                    'image':'<img src=\'images/EXHIBITION.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.496,31.2420]
+                },
+                'properties':{
+                    'ID':7,
+                    'Event':'Oriental Tower',
+                    'image':'<img src=\'images/ORIENTALTOWER.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.500,31.237]
+                },
+                'properties':{
+                    'ID':8,
+                    'Event':'Jinmao',
+                    'image':'<img src=\'images/JINMAO.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.4793519,31.2323976]
+                },
+                'properties':{
+                    'ID':9,
+                    'Event':'Shimao',
+                    'image':'<img src=\'images/SHIMAO.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.503,31.237]
+                },
+                'properties':{
+                    'ID':10,
+                    'Event':'WFC',
+                    'image':'<img src=\'images/wfc.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.489775,31.185475]
+                },
+                'properties':{
+                    'ID':11,
+                    'Event':'Expo',
+                    'image':'<img src=\'images/EXPO.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.499892,31.235231]
+                },
+                'properties':{
+                    'ID':12,
+                    'Event':'Shanghai Tower',
+                    'image':'<img src=\'images/shanghaitower.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.491981,31.251361]
+                },
+                'properties':{
+                    'ID':13,
+                    'Event':'Sinar Mas',
+                    'image':'<img src=\'images/SINAR.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            },
+            {
+                'type':'Feature',
+                'geometry':{
+                    'type':'Point',
+                    'coordinates':[121.46977,31.17243]
+                },
+                'properties':{
+                    'ID':14,
+                    'Event':'SK',
+                    'image':'<img src=\'images/sk.jpeg\'>',
+                    'icon':'\'marker\'' 
+                }
+            }
+        ]
+};
+       
+geojson.features.forEach(function(marker){
+    
+    var popup = new mapboxgl.Popup()
+    .setHTML(marker.properties.image);
+    
+    var el = document.createElement('div');
+    el.className='marker';
+    
+    const myMarker = new mapboxgl.Marker(el,{
+        offset:[0,-25]
+    })
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(popup)
+    .addTo(map);
+    
+    const markerDiv = myMarker.getElement();
+    
+    markerDiv.addEventListener('mouseenter',() => myMarker.togglePopup());
+    markerDiv.addEventListener('mouseleave',() => myMarker.togglePopup());
+});
+
+});
+
+var chapters = {
+'start': {
+bearing: 27,
+center: [121.4888, 31.2379],
+zoom: 15.5,
+pitch: 20
+},
+'park hotel': {
+duration: 6000,
+center: [121.4694174,31.237],
+bearing: 30,
+zoom: 16,
+pitch: 50
+},
+'HSBC': {
+bearing: 90,
+center: [121.486652,31.236312],
+zoom: 18,
+speed: 0.6,
+pitch: 70
+},
+'Broadway Mansions': {
+bearing: 30,
+center: [121.4845267,31.242821],
+zoom: 16,
+pitch: 60
+},
+'Cathedral': {
+bearing: 45,
+center: [121.433906,31.191164],
+zoom: 15.3,
+pitch: 20,
+speed: 0.5
+},
+'exhibition': {
+bearing: 180,
+center: [121.449665,31.224425],
+zoom: 15,
+pitch:60
+},
+'Oriental Tower': {
+bearing: 90,
+center: [121.4975196,31.2397839],
+zoom: 15,
+pitch: 40
+},
+'Jinmao': {
+bearing: 90,
+center: [121.5036365,31.2352567],
+zoom: 14.3,
+pitch: 20
+},
+'Shimao':{
+bearing:27,
+center:[121.4793519,31.2323976],
+zoom:15,
+pitch:60
+},
+'WFC':{
+bearing:27,
+center:[121.5053825,31.2346832],
+zoom:15,
+pitch:60
+},
+ 'Expo':{
+bearing:27,
+center:[121.494775,31.184475],
+zoom:15,
+pitch:50
+},
+'Shanghai Tower':{
+bearing:27,
+center:[121.503424,31.233518],
+zoom:15,
+pitch:60
+},
+'Sinar Mas':{
+bearing:27,
+center:[121.493926,31.251189],
+zoom:16,
+pitch:60
+},
+'SK':{
+bearing:27,
+center:[121.46977,31.17243],
+zoom:15,
+pitch:60
+},
+};
+ 
+// On every scroll event, check which element is on screen
+window.onscroll = function() {
+var chapterNames = Object.keys(chapters);
+for (var i = 0; i < chapterNames.length; i++) {
+var chapterName = chapterNames[i];
+if (isElementOnScreen(chapterName)) {
+setActiveChapter(chapterName);
+break;
+}
+}
+};
+ 
+var activeChapterName = 'baker';
+function setActiveChapter(chapterName) {
+if (chapterName === activeChapterName) return;
+ 
+map.flyTo(chapters[chapterName]);
+ 
+document.getElementById(chapterName).setAttribute('class', 'active');
+document.getElementById(activeChapterName).setAttribute('class', '');
+ 
+activeChapterName = chapterName;
+}
+ 
+function isElementOnScreen(id) {
+var element = document.getElementById(id);
+var bounds = element.getBoundingClientRect();
+return bounds.top < window.innerHeight && bounds.bottom > 0;
+}
+</script>
+ 
+</body>
+</html>
