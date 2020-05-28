@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Population Change</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js'></script>
+  <link href= 'https://fonts.googleapis.com/css?family=Work Sans|Droid+Serif:bold' rel='stylesheet';>
+</head>
+<body>
+    
+    
+    
+<link href='pop.css' rel='stylesheet' />    
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>    
+<div id='map'></div>     
+<div class='map-overlay top'>  
+    <div class='map-overlay-inner'>
+        <h1> Global Population 1950 - 2015 </h1>
+        <p class='credit'> </p>
+        <div class='session' id='sliderbar'>
+            <label><h2>Year: <span id='slider-value'>2000</span></h2></label>
+            <table><tr><td>
+                <input id='slider' type='range' min='1950' max='2015' step='5' value='1950' list='tickmarks'/>
+                <datalist id='tickmarks'>
+            <option value='1950' label="1950"><option value="1960">
+            <option value="1970"><option value="1980"><option value="1990"><option value="2000"><option value="2005"><option value="2010"><option value="2015" label="2015">
+            </datalist>
+            </td>
+                
+            </tr></table>
+            
+        <div class='session'>
+            <h2>Population</h2>
+            <div class='row colors'></div>
+            <div class='row labels'>
+                <div class='label'>0</div>
+                <div class='label'>717</div>
+                <div class='label'>38001(k)</div>
+            </div>
+            
+
+
+        <p class='credit'> Data: Population in largest city, <a href='https://data.worldbank.org/indicator/EN.URB.LCTY?end=2017&start=1960'>The World Bank</a> </p>		
+    The 2010 census put SHanghai's total population at 23,019,148, a growth of 37.53% from 16,737,734 in 2000. 20.6 million of the total population, or 89.3%, are urban, and 2.5 million (10.7%) are rual. Based on population of total administrative area, Shanghai is the second largest of the four direct-controlled municipalities of China, behind CHongqing, but is generally considered the largest Chinese city because Chongqing's urban population is much smaller.
+            <img src="images/pop.png" width="98%" frameBorder ='0' scrolling ='no' height = '250px'>
+        </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+           
+</div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2djd2FuMTYiLCJhIjoiY2oxeXIxc2ZwMDAwdTMzcnZvNzQ2NHJodyJ9.WTKK8mArsncLhB20v3wzxA';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/sgcwan16/cjt1clhzo0pjj1fp1bh0yqp36',
+  center: [110.4998, 31.2379],
+  zoom: 4.5
+});
+    
+    
+ var years = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2015];
+    
+  
+    var overlay = document.getElementById('map-overlay');
+    
+    map.on('load', function(){
+        
+        var filterYear = ['==',['number',['get','year']],1950];
+        
+        var filterFlow = ['>',['number',['get', 'Value']],0];
+        
+        
+        map.addLayer({
+            id: 'Population',
+            type:'circle',
+            source: {
+                type: 'vector',
+                url: 'mapbox://sgcwan16.4egau77a'
+            },
+            'source-layer': 'Population1200-2015NORMAL-8aabcx',
+            'layout': {
+                'visibility': 'visible'
+            },
+            paint: {
+                'circle-radius': {
+                    property: 'VAL',
+                    type: 'exponential',
+                    stops: [
+                        [{zoom: 2, value: 0}, 2],
+                        [{zoom: 2, value: 1}, 10],
+                        [{zoom: 9.3, value: 100}, 7.5],
+                        [{zoom: 9.3, value: 180}, 15],
+                        [{zoom: 12, value: 0}, 5],
+                        [{zoom: 12, value: 100}, 15],
+                        [{zoom: 12, value: 180}, 30],
+                      
+                                ]
+                },
+                'circle-opacity': 0.9,
+                'circle-color': {
+                    property: 'VAL',
+                    stops: [
+                        
+                        [0, '#FFFF00'],
+                        [0.002158, '#ffb64d'],
+                        [0.08579, '#dc4f41'],
+                        [1, '#800000']
+                    ]
+                }
+            },
+            'filter': ['all', filterYear, filterFlow]
+            
+        });
+        
+       
+        
+        var sliderValue = document.getElementById('slider-value');
+         document.getElementById('slider').addEventListener('input', function(e) {
+                var year = parseInt(e.target.value, 10);
+                //filterBy(year);
+                filterYear = ['==',['number',['get','year']],year];
+                map.setFilter('Population', ['all', filterYear, filterFlow]);
+                document.getElementById('slider-value').innerText = year;
+                });
+      
+       /*slider.addEventListener('input', function(e){
+           sliderValue.textContent = e.target.value;
+       }); */
+        
+        //POPUP
+        
+        
+        
+        map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' })); 
+        
+        
+        document.getElementById('layer').addEventListener('change', function(e){
+        var AADF = e.target.value;
+        if (AADF === 'all') {
+            filterFlow = ['>',['number',['get', 'Value']],0];
+        } else if (AADF === 'major') {
+            filterFlow = ['>',['number',['get', 'Value']],100];
+        } 
+        
+        map.setFilter('Population',['all', filterYear, filterFlow]);
+    });
+    });
+    
+
+</script>
+
+</body>
+</html>

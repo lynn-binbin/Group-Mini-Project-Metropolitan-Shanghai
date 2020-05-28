@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Shanghai Mapbox</title>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="js/jquery.js"></script>
+	<style type="text/css">
+	  body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+       .right{
+       	  position: absolute;
+		  height: 1400px;
+       	  left: 1050px;
+       	  width: 350px;
+       	  height: 880px;
+       	  background-color: #333;
+       	  color: #fff;
+       	  border-radius: 20px;
+       	  opacity: 0.8;
+       }
+       .right h1{
+       	width: 350px;
+       	font-size: 30px;
+       	color: #fff;
+       	text-align: center;
+       }
+       .right .item{
+       	width: 350px;
+       	height: 50px;
+       	text-align: center;
+       	line-height: 50px;
+       	background-color: #111;
+       }
+	   .right .box{
+		   position: relative;
+		   z-index: 999;
+		   text-align:left;
+		   font-size: 20px;
+		   height: 150px;
+		   color:#fff;
+	   }
+	   #Remap{
+		cursor:pointer;
+		font-size: 25px;
+		font-weight: 900;
+	   }
+	</style>
+<style>
+	.black_overlay {
+		display: none;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		z-index: 1001;
+		-moz-opacity: 0.8;
+		opacity: .80;
+		filter: alpha(opacity=80);
+	}
+
+	.white_content {
+		display: none;
+		position: absolute;
+		top: 10%;
+		left: 10%;
+		width: 80%;
+		height: 80%;
+		border: 16px solid lightblue;
+		background-color: white;
+		z-index: 1002;
+		overflow: auto;
+	}
+
+	.white_content_small {
+		display: none;
+		position: absolute;
+		top: 20%;
+		left: 30%;
+		width: 40%;
+		height: 50%;
+		border: 16px solid lightblue;
+		background-color: white;
+		z-index: 1002;
+		overflow: auto;
+	}
+	.item{
+		cursor: pointer;
+	}
+	.redbox{
+		display: none;
+		position: absolute;
+		left: 1000px;
+		top: 570px;
+		z-index: 999;
+		width: 50px;
+		height: 50px;
+		background-color: red;
+		opacity: 0.6;
+		border-radius: 50px;
+	}
+</style>
+</head>
+<body>
+<div id='map' style='width: 1050px; height: 900px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZm9uZW9uZXNhaiIsImEiOiJja2EybGNxamcwZTFrM2ZvNXAzMW1td3MzIn0.WhGZC3WT7dhha22XiKpAIA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/foneonesaj/ckahg4szo06991inzx7hctfct'
+  });
+</script>
+<div id="redbox" class="redbox"></div>
+<div id="redbox2" class="redbox"></div>
+<div id="redbox3" class="redbox"></div>
+<div id="redbox4" class="redbox"></div>
+<div id="redbox5" class="redbox"></div>
+<div id="redbox6" class="redbox"></div>
+<div id="redbox7" class="redbox"></div>
+<div id="redbox8" class="redbox"></div>
+<div id="redbox9" class="redbox"></div>
+<div id="redbox10" class="redbox"></div>
+<div id="redbox11" class="redbox"></div>
+<div id="redbox12" class="redbox"></div>
+<div id="redbox13" class="redbox"></div>
+<div class="right">	
+<h1>Recent Shanghai Rail Transit Construction Map</h1>
+<div class="item" id="a1">
+2013-6-15
+</div>
+<div class="item" id="a2">
+2013-8-31
+</div>
+<div class="item" id="a3">
+2013-10-16
+</div>
+<div class="item" id="a4">
+2013-12-29
+</div>
+<div class="item" id="a5">
+2014-5-10
+</div>
+<div class="item" id="a6">
+2014-7-22
+</div>
+<div class="item" id="a7">
+2014-11-1
+</div>
+<div class="item" id="a8">
+2014-12-28
+</div>
+<div class="item" id="a9">
+2015-12-29
+</div>
+<div class="item" id="a10">
+2016-4-26
+</div>
+<div class="item" id="a11">
+2017-12-30
+</div>
+<div class="item" id="a12">
+2018-3-31
+</div>
+<div class="item">
+	<span id="Remap">Remap</span>
+</div>
+<div class="box">
+	THIS IS MY HOME
+</div>
+</div>
+
+<script>
+$('#Remap').click(function function_name(argument) {
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZm9uZW9uZXNhaiIsImEiOiJja2EybGNxamcwZTFrM2ZvNXAzMW1td3MzIn0.WhGZC3WT7dhha22XiKpAIA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/foneonesaj/ckahg4szo06991inzx7hctfct'
+  });
+})
+$('#a1').click(function(){
+	$('#redbox').css('display','block');
+	$('.box').text('Qilian shan south station of Shanghai metro line 13 was put into operation');
+})
+$('#a2').click(function(){
+	$('#redbox2').css('display','block');
+	$('#redbox2').css("top","300px");
+	$('#redbox2').css("left","300px");
+	$('.box').text('The middle section of Shanghai metro line 12 (qufu road station to tiantong road station) was opened for trial operation');
+})
+$('#a3').click(function(){
+	$('#redbox3').css('display','block');
+	$('#redbox3').css("top","200px");
+	$('#redbox3').css("left","600px");
+	$('.box').text('Shanghai metro line 16 rear access section (luoshan road station to longyang road station) was opened for trial operation');
+})
+$('#a4').click(function(){
+	$('#redbox4').css('display','block');
+	$('#redbox4').css("top","120px");
+	$('#redbox4').css("left","110px");
+	$('.box').text('Disney section of Shanghai metro line 11 (luoshan road station to kangxin road station)');
+})
+$('#a5').click(function(){
+	$('#redbox5').css('display','block');
+	$('#redbox5').css("top","350px");
+	$('#redbox5').css("left","100px");
+	$('.box').text('Shanghai metro line 11 Disneyland station is open for business');
+})
+$('#a6').click(function(){
+	$('#redbox6').css('display','block');
+	$('#redbox6').css("top","610px");
+	$('#redbox6').css("left","70px");
+	$('.box').text('The east extension of Shanghai metro line 9 phase iii (from Yang gaozhong road station to cao road station) and Shanghai metro line 17 were put into trial operation.');
+})
+$('#a7').click(function(){
+	$('#redbox7').css('display','block');
+	$('#redbox7').css("top","530px");
+	$('#redbox7').css("left","90px");
+	$('.box').text('Shanghai metro pujiang line opens trial operation');
+})
+$('#a8').click(function(){
+	$('#redbox8').css('display','block');
+	$('#redbox8').css("top","420px");
+	$('#redbox8').css("left","600px");
+	$('.box').text('South extension of Shanghai metro line 5 (dongchuan road station to fengxian xincheng station)');
+})
+$('#a9').click(function(){
+	$('#redbox2').css('display','block');
+	$('#redbox2').css("top","300px");
+	$('#redbox2').css("left","300px");
+	$('.box').text('Dec. 29, east section of Shanghai metro line 12 (jinhai road station to tiantong road station)');
+})
+$('#a10').click(function(){
+	$('#redbox10').css('display','block');
+	$('#redbox10').css("top","430px");
+	$('#redbox10').css("left","00px");
+	$('.box').text('The second phase of Shanghai metro line 8 (from yaohua road station to shendu road station) was put into trial operation');
+})
+$('#a11').click(function(){
+	$('#redbox11').css('display','block');
+	$('#redbox11').css("top","100px");
+	$('#redbox11').css("left","700px");
+	$('.box').text('On September 28, 2012, the China art palace station of Shanghai metro line 8 was put into operation.');
+})
+$('#a12').click(function(){
+	$('#redbox12').css('display','block');
+	$('#redbox12').css("top","700px");
+	$('#redbox12').css("left","200px");
+	$('.box').text('Shanghai metro line 5 (xinzhuang station to minhang development zone station) was opened for trial operation');
+})
+</script>
+</body>
+</html>

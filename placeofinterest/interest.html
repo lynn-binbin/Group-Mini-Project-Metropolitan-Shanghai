@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        .qx{
+            font-style:italic
+        }
+        .jc{
+            font-weight: 900
+        }
+    </style>
+        <link href="interest.css" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="main">
+        <div>
+            <h1 style="font-size: 60px">DATA ANLAYSIS</h1>
+            <span style="font-weight: 900">Places of Interest Analysis in Shanghai</span>
+        </div>
+        <div>
+            <h1 class="qx">Background</h1>
+            <div class="responsive"><img src=b.jpeg class="img-responsive" alt="Responsive image">
+                <span class="text">As we all know, Shanghai is the largest economy of China, and its daily throughput is among the highest in the world. With the huge population movement, the development of tourism plays a vital role for Shanghai. Below we use three layers to visualize the nature of many tourist attractions in Shanghai.</span>
+               
+            </div>
+            <div>
+                <h1 class="qx">Accessibility</h1>
+                
+            </div>
+            <div>
+                <span>In the first layer, it shows the geographical distribution of major scenic spots in Shanghai. We divide the attractions into three parts according to accessibility of major transportation facilities, that is, the time range for tourists from arriving in Shanghai to arriving at the scenic spots: </span>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="1.png" class="img-responsive" alt='Responsive image'>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="2.png" class="img-responsive" alt='Responsive image'>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="3.png" class="img-responsive" alt='Responsive image'>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span> Location</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span > 3000m Accessibility</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span > 5000m Accessibility</span>
+                    </div>
+                </div>
+            </div>
+         
+          
+        </div>
+           <div >
+            
+                <span>We divide it into three categories through accessibility. The first category has the highest score, which is represented by the red dot and the maximum radius. It combines the accessibility of the three major transportation of the airport, railway station, and bus station. Its convenience is the highest for tourists, and it is the most suitable for them as the first stop to visit after arrival. From red to yellow to blue, the accessibility of major transportation facilities is getting lower and lower. The blue dot has the lowest connection with external transportation facilities, which can be found that most of them are distributed outside the city, so it is suitable for local residents.</span>
+                <span></span>
+            </div>
+        <div class="qx">
+            <h1>Overall Analysis</h1>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="4.png" class="img-responsive" alt="Responsive image">
+                </div>
+                <div class="col-md-6">
+                    <img src="5.png" class="img-responsive" alt='Responsive image'>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-6">
+            <div style="text-align: center" >Overall Accessibility</div>
+        </div>
+        <div class="col-md-6">
+            <div style="text-align: center">Overall Map</div>
+        </div>
+            </div>
+        </div>
+        <div>
+            <div style="padding-top: 20px">
+            <span>On the other hand, the other two layers are surface data, which represent the service area (also called isochronous circle), that is, the area that contains all the traffic streets. The distances selected are 3000 meters and 5000 meters respectively. The small range is from the various scenic spots along the city road, spreading out of the range of 3000 meters, shown in red; the large represents the spread of 5000 meters, shown in yellow. This module uses ArcGIS to operate and is used to evaluate the accessibility of scenic spots, that is, it can be used as a selection criterion when tourists want to visit multiple scenic spots.</span>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
