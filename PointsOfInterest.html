@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Points of Interest Distribution and Accessibility Analysis</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://carto.com/developers/carto-vl/v1.4.4/examples/maps/style.css" rel="stylesheet">
+
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+     #menu {
+        position:fixed;
+        width: 60%;
+        background: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .toolbox{
+        background-color: black;
+    }
+   
+</style>
+
+
+<div id="map"></div>
+<aside class="toolbox">
+    <div class="box">
+        <header>
+        <h1>Places of Interest Distribution and Accessibility Anlysis</h1>
+        <p class="credit">DATA SOURCE: <a href="https://lbsyun.baidu.com/">BAIDU</a></p>
+        </header>
+    <section>
+        <p class="description open-sans">It shows the geographical distribution of major scenic spots in Shanghai. We divide the attractions into three categories through accessibility. The first category has the highest score, which is represented by the red dot and the maximum radius. It combines the accessibility of the three major transportation of the airport, railway station, and bus station. Its convenience is the highest for tourists, and it is the most suitable for them as the first stop to visit after arrival. From red to yellow to blue, the accessibility of major transportation facilities is getting lower and lower. The blue dot has the lowest connection with external transportation facilities, which can be found that most of them are distributed outside the city.
+        </p>
+</section>
+        <section>
+            <p class="description open-sans">
+                Guidelines:
+            </p>
+        </section>
+        <section>
+            <p class='description open-sans'>
+                1.Click the button to change the map
+            </p>
+        </section>
+        <section>
+            <p class='description open-sans'>
+                2.Move the mouse and Zoom
+            </p>
+        </section>
+        <section>
+            <p class='description open-sans'>
+                3.Check the Points of Interest Distribution of the first layer
+            </p>
+        </section>
+        <section>
+            <p class='description open-sans'>
+                4.Check the Accessibility map of 1000m,3000m,and 5000m
+            </p>
+        </section>
+    <br />
+    </div>
+    </aside>
+
+<div id="menu">
+    <input
+        id="ckam9mvck0kxl1in49jnxhrgw"
+        type="radio"
+        name="rtoggle"
+        value="1-Points"
+        checked="checked"
+    />
+    <label for="ckam9mvck0kxl1in49jnxhrgw">POI Distribution</label>
+    <input id="ckama766r0gxj1ilrgi8la9yu" type="radio" name="rtoggle" value="2-Surface1000" />
+    <label for="ckama766r0gxj1ilrgi8la9yu">1km Accessibility</label>
+    <input id="ckamadrm64ma51ipo90jgpgbr" type="radio" name="rtoggle" value="3-Surface3000" />
+    <label for="ckamadrm64ma51ipo90jgpgbr">3km Accessibility</label>
+    <input id="ckamaio3808we1innq6we0c42" type="radio" name="rtoggle" value="4-Surface5000" />
+    <label for="ckamaio3808we1innq6we0c42">5km Accessibility</label>
+</div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYnJvZGllLXIwbiIsImEiOiJjazc4dHh4ZWowaXNpM2VueWp0Zjl6bHd4In0.IwWXofhsm2vSVniDVNudGA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/brodie-r0n/ckam9mvck0kxl1in49jnxhrgw',
+        zoom: 8.5,
+        center: [121.6737, 31.2304]
+    });
+
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(layer) {
+        var layerId = layer.target.id;
+        map.setStyle('mapbox://styles/brodie-r0n/' + layerId);
+        map.setCenter([121.6737, 31.2304]);
+        map.setZoom(8.50);
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
+</script>
+
+</body>
+</html>
